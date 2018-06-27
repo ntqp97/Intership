@@ -1,7 +1,7 @@
 #pragma once
 #include"Teacher.h"
 #include"Student.h"
-#include <fstream>
+
 class Node
 {
 public:
@@ -19,6 +19,8 @@ public:
 	void PrintAvgSMT5();
 	void swap(Node *a, Node *b);
 	void bubbleSort();
+	void WritetoFile(ofstream &f);
+	static void ReadfromFile(ifstream &f,Node*);
 };
 
 

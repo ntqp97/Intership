@@ -22,5 +22,7 @@ public:
 	Student();
 	Student(char* Name, Date Birthday, int IDcode, int Grade, int NumOfProject);
 	~Student();
+	void WtoF(ofstream &f);
+	void RfromF(ifstream &f);
 };
 

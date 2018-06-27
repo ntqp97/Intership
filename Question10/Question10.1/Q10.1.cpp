@@ -8,7 +8,14 @@ int Student::countStudent = 0;
 int main()
 {
 	Node* a = new Node();
-	//a->Loadfile("file.txt");
+	ifstream file;
+	file.open("ouput.txt", ios::in);
+	if (file) 
+	{
+		a->ReadfromFile(file,a);
+	}
+	ofstream fileout;
+	fileout.open("ouput.txt", ios::out);
 	int choice;
 	do
 	{
@@ -29,9 +36,6 @@ int main()
 				cout << " Input Error!" << endl;
 			}
 		} while (choice < 0 || choice > 7);
-		fstream file;
-		file.open("file.txt", ios::out);
-		
 		switch (choice)
 		{
 		case 1:
@@ -65,8 +69,8 @@ int main()
 		case 7:
 		{
 			a->Output();
-			file << a;
-			file.close();
+			a->WritetoFile(fileout);
+			fileout.close();
 		}
 			break;
 		default:

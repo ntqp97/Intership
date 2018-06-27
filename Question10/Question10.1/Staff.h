@@ -20,5 +20,7 @@ public:
 	Staff();
 	Staff(char*, Date, int, int, Date, int);
 	virtual ~Staff();
+	virtual void WtoF(ofstream &f);
+	virtual void RfromF(ifstream &f);
 };
 

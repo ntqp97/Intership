@@ -141,3 +141,67 @@ int Teacher::getCountTeacher()
 {
 	return countTeacher;
 }
+
+void Teacher::WtoF(ofstream & f)
+{
+	Staff::WtoF(f);
+	f << " " << Class << " ";
+	switch (Subject1)
+	{
+	case MATHS:
+		f << "MATHS";
+		break;
+	case PHYS:
+		f << "PHYS";
+		break;
+	case ENGLISH:
+		f << "ENGLISH";
+		break;
+	}
+	f << ",";
+	switch (Subject2)
+	{
+	case MATHS:
+		f << "MATHS";
+		break;
+	case PHYS:
+		f << "PHYS";
+		break;
+	case ENGLISH:
+		f << "ENGLISH";
+		break;
+	}
+}
+
+void Teacher::RfromF(ifstream & f)
+{
+	Staff::RfromF(f);
+	f >> Class;
+	string s;
+	f.get();
+	getline(f, s, ',');
+	if (s == "MATHS") {
+		Subject1 = MATHS;
+	}
+	else {
+		if (s == "PHYS") {
+			Subject1 = PHYS;
+		}
+		else {
+			Subject1 = ENGLISH;
+		}
+	}
+
+	getline(f, s);
+	if (s == "MATHS") {
+		Subject2 = MATHS;
+	}
+	else {
+		if (s == "PHYS") {
+			Subject2 = PHYS;
+		}
+		else {
+			Subject2 = ENGLISH;
+		}
+	}
+}

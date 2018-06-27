@@ -136,3 +136,22 @@ int People::getCountPeople()
 	return countPeople;
 }
 
+void People::WtoF(ofstream& f)
+{
+	f << IDcode << " " << Name << "," << Birthday.Day << " " << Birthday.Month << " " << Birthday.Year;
+}
+
+void People::RfromF(ifstream & f)
+{
+	f >> IDcode;
+	string s;
+	getline(f, s, ',');
+	if (Name) {
+		delete[] Name;
+		Name = NULL;
+	}
+	Name = new char[s.length() + 1];
+	strcpy_s(Name, s.length() + 1, s.c_str());
+	f >> Birthday.Day >> Birthday.Month >> Birthday.Year;
+}
+

@@ -23,5 +23,7 @@ public:
 	Teacher();
 	Teacher(char*, Date, int, int, Date, int, int);
 	~Teacher();
+	void WtoF(ofstream &f);
+	void RfromF(ifstream &f);
 };
 

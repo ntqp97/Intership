@@ -16,7 +16,7 @@ Node::Node(const Node& list)
 }
 Node::~Node()
 {
-	cout << "Delete List" << endl;
+	std::cout << "Delete List" << endl;
 	while (Head != NULL)
 	{
 		Node* p = Head;
@@ -30,11 +30,11 @@ void Node::Output()
 	
 	if (!Head)
 	{
-		cout << "Empty List!!!" << endl;
+		std::cout << "Empty List!!!" << endl;
 	}
 	else
 	{
-		cout << "================ List! ================ " << endl;
+		std::cout << "================ List! ================ " << endl;
 		Node* p = Head;
 		for (; p; p = p->Next)
 		{
@@ -72,18 +72,18 @@ void Node::Input(Node* node)
 	int choice;
 	do
 	{
-		cout << "=============Lua chon=============" << endl;
-		cout << "1: Staff " << endl;
-		cout << "2: Teacher " << endl;
-		cout << "3: Student " << endl;
-		cout << "0: Exit " << endl;
+		std::cout << "=============Lua chon=============" << endl;
+		std::cout << "1: Staff " << endl;
+		std::cout << "2: Teacher " << endl;
+		std::cout << "3: Student " << endl;
+		std::cout << "0: Exit " << endl;
 		do
 		{
-			cout << "Choice: ";
+			std::cout << "Choice: ";
 			cin >> choice;
 			if (choice < 0 || choice > 3)
 			{
-				cout << " Input Error!" << endl;
+				std::cout << " Input Error!" << endl;
 			}
 		} while (choice < 0 || choice > 3);
 		switch (choice)
@@ -113,7 +113,7 @@ void Node::Input(Node* node)
 		default:
 			break;
 		}
-		cout << endl;
+		std::cout << endl;
 	} while (choice != 0);
 }
 
@@ -122,7 +122,7 @@ void Node::bubbleSort()
 {/* Checking for empty list */
 	if (!Head)
 	{
-		cout << "Empty List!!!" << endl;
+		std::cout << "Empty List!!!" << endl;
 		return;
 	}
 
@@ -174,11 +174,11 @@ void Node::PrintAvgSMT5()
 
 	if (!Head)
 	{
-		cout << "Empty List!!!" << endl;
+		std::cout << "Empty List!!!" << endl;
 	}
 	else
 	{
-		cout << "================ List! ================ " << endl;
+		std::cout << "================ List! ================ " << endl;
 		Node* p = Head;
 		for (; p; p = p->Next)
 		{
@@ -221,4 +221,82 @@ void Node::Remove(Node* node, int k)
 	}
 }
 
+void Node::WritetoFile(ofstream &f)
+{
+	if (!Head)
+	{
+		std::cout << "Empty List!!!" << endl;
+	}
+	else
+	{
+		Node* p = Head;
+		Staff* dataStaff = dynamic_cast<Staff*>(p->Data);
+		Teacher* dataTeacher = dynamic_cast<Teacher*>(p->Data);
+		Student* dataStudent = dynamic_cast<Student*>(p->Data);
+		for (; p; p = p->Next)
+		{
+			dataStaff = dynamic_cast<Staff*>(p->Data);
+			dataTeacher = dynamic_cast<Teacher*>(p->Data);
+			dataStudent = dynamic_cast<Student*>(p->Data);
+			if (p->Data == dataTeacher)
+			{
+				f << 2 << " ";
+				p->Data->WtoF(f);
+				f << endl;
+			}
+			else if (p->Data == dataStaff)
+			{
+				f << 1 << " ";
+				p->Data->WtoF(f);
+				f << endl;
+			}
+			else if (p->Data == dataStudent)
+			{
+				f << 3 << " ";
+				p->Data->WtoF(f);
+				f << endl;
+			}
+		}
+	}
+}
+
+void Node::ReadfromFile(ifstream & f,Node* node)
+{
+	int is;
+	while (f >> is)
+	{
+		switch (is)
+		{
+		case 1:
+		{
+				  node->Data = new Staff();
+				  node->Data->RfromF(f);
+				  node->AddPeople(node->Data);
+		}
+			break;
+
+		case 2:
+		{
+				  node->Data = new Teacher();
+				  node->Data->RfromF(f);
+				  node->AddPeople(node->Data);
+		}
+			break;
+		case 3:
+		{
+				  node->Data = new Student();
+				  node->Data->RfromF(f);
+				  node->AddPeople(node->Data);
+		}
+			break;
+		default:
+			static int i = 0;
+			std::cout << "loi doc thu " << ++i;
+			delete node;
+			break;
+		}
+	
+		is = 0;
+	}
+}
 

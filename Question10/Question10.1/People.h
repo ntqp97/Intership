@@ -1,6 +1,7 @@
 #pragma once
 #include<iostream>
 #include <string>
+#include <fstream>
 using namespace std;
 
 struct Date
@@ -35,5 +36,7 @@ public:
 	People();
 	People(char*,Date,int);
 	virtual ~People();
+	virtual void WtoF(ofstream &f);
+	virtual void RfromF(ifstream &f);
 };
 

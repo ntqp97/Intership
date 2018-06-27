@@ -101,4 +101,25 @@ int Student::getCountStudent()
 {
 	return countStudent;
 }
+void Student::WtoF(ofstream & f)
+{
 
+	People::WtoF(f);
+	f << " " << Grade << " " << NumOfProject << " ";
+	for (int i = 0; i < NumOfProject; i++) {
+		f << ScoreOfEachProject[i] << " ";
+	}
+}
+void Student::RfromF(ifstream & f)
+{
+	People::RfromF(f);
+	f >> Grade >> NumOfProject;
+	if (ScoreOfEachProject) {
+		delete[]ScoreOfEachProject;
+		ScoreOfEachProject = NULL;
+	}
+	ScoreOfEachProject = new float[NumOfProject];
+	for (int i = 0; i < NumOfProject; i++) {
+		f >> ScoreOfEachProject[i];
+	}
+}

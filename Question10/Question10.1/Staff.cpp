@@ -67,6 +67,18 @@ int Staff::getCountStaff()
 	return countStaff;
 }
 
+void Staff::WtoF(ofstream & f)
+{
+	People::WtoF(f);
+	f << " " << IDdepartment << " " << JoinedDate.Day << " " << JoinedDate.Month << " " << JoinedDate.Year << " " << Level;
+}
+
+void Staff::RfromF(ifstream & f)
+{
+	People::RfromF(f);
+	f >> IDdepartment >> JoinedDate.Day >> JoinedDate.Month >> JoinedDate.Year >> Level;
+}
+
 
 
 
