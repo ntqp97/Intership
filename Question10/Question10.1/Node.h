@@ -19,7 +19,6 @@ public:
 	void PrintAvgSMT5();
 	void swap(Node *a, Node *b);
 	void bubbleSort();
-	//void WriteToFile(ofstream& )
 };
 
 
